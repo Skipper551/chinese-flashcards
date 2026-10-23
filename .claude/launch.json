@@ -6,6 +6,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev", "--", "--port", "5173", "--strictPort"],
       "port": 5173
+    },
+    {
+      "name": "preview-pages",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": ["-c", "rm -rf dist && BASE_PATH=/chinese-flashcards/ npm run build && BASE_PATH=/chinese-flashcards/ npx vite preview --port 4173 --strictPort"],
+      "port": 4173
     }
   ]
 }
