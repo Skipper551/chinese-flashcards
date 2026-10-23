@@ -5,6 +5,11 @@ import { Decks } from './screens/Decks';
 import { Progress } from './screens/Progress';
 import { Settings } from './screens/Settings';
 
+export interface ScreenProps {
+  /** Whatever follows the route name in the hash, e.g. the deck id in #decks/3. */
+  param?: string;
+}
+
 const routes = {
   home: { label: 'Home', screen: Home },
   study: { label: 'Study', screen: Study },
@@ -15,20 +20,21 @@ const routes = {
 
 export type Route = keyof typeof routes;
 
-function currentRoute(): Route {
-  const name = location.hash.slice(1);
-  return name in routes ? (name as Route) : 'home';
+function currentLocation(): { route: Route; param?: string } {
+  const [name, ...rest] = location.hash.slice(1).split('/');
+  const route = name in routes ? (name as Route) : 'home';
+  return { route, param: rest.join('/') || undefined };
 }
 
-export function navigate(route: Route) {
-  location.hash = route;
+export function navigate(route: Route, param?: string | number) {
+  location.hash = param === undefined ? route : `${route}/${param}`;
 }
 
 export function App() {
-  const [route, setRoute] = useState<Route>(currentRoute);
+  const [{ route, param }, setLocation] = useState(currentLocation);
 
   useEffect(() => {
-    const onHash = () => setRoute(currentRoute());
+    const onHash = () => setLocation(currentLocation());
     addEventListener('hashchange', onHash);
     return () => removeEventListener('hashchange', onHash);
   }, []);
@@ -36,9 +42,9 @@ export function App() {
   const Screen = routes[route].screen;
 
   return (
-    <div class="shell">
+    <div class={`shell route-${route}`}>
       <main class="screen">
-        <Screen />
+        <Screen key={`${route}/${param ?? ''}`} param={param} />
       </main>
       <nav class="tabbar">
         {(Object.keys(routes) as Route[]).map((name) => (
