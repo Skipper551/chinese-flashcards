@@ -45,6 +45,9 @@ export function App() {
     <div class={`shell route-${route}`}>
       <main class="screen">
         <Screen key={`${route}/${param ?? ''}`} param={param} />
+        {route !== 'study' && (
+          <footer class="disclaimer">Fully created by Claude (Anthropic’s AI), monitored by Malcolm Swim.</footer>
+        )}
       </main>
       <nav class="tabbar">
         {(Object.keys(routes) as Route[]).map((name) => (

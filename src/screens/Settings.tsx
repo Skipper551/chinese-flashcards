@@ -105,7 +105,8 @@ export function Settings() {
       <div class="card about">
         <h2>About</h2>
         <p class="muted small">
-          This app was vibe coded in its entirety: all of its code was written by an AI (Claude, via Claude Code).
+          This app was vibe coded in its entirety: it was fully created by Claude, Anthropic’s AI (via Claude Code), and
+          monitored by Malcolm Swim.
         </p>
         <p class="muted small">
           Handwriting recognition: HanziLookupJS (GNU GPL v3) with Make Me a Hanzi data (Arphic Public License). Stroke order:

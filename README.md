@@ -4,9 +4,10 @@ Handwriting flashcards for the iPad: write simplified Chinese characters from me
 checks them, and FSRS spaced repetition decides when each word comes back. Runs in Safari, installs to the Home
 Screen, works offline, and keeps everything on the iPad (with backup/restore to a file).
 
-> **Vibe coded.** This project was vibe coded in its entirety: every line of code, the tests, the docs, and the
-> sample deck were written by an AI (Claude, via Claude Code) from a plain-language plan, without hand-written
-> code. It was tested with automated tests and in a browser, but read and use it with that in mind.
+> **Vibe coded.** This project was vibe coded in its entirety: it was fully created by Claude, Anthropic's AI (via
+> Claude Code), and monitored by Malcolm Swim. Every line of code, the tests, the docs, and the sample deck were
+> written by Claude from a plain-language plan, without hand-written code. It was tested with automated tests and in
+> a browser, but read and use it with that in mind.
 
 Live at **https://skipper551.github.io/chinese-flashcards/**
 

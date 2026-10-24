@@ -236,6 +236,16 @@ input[type='search'] {
   text-decoration: none;
 }
 
+.disclaimer {
+  max-width: 900px;
+  margin: 40px auto 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+
 /* Tab bar */
 
 .tabbar {
