@@ -42,5 +42,6 @@ Stack: Vite, Preact, TypeScript, vite-plugin-pwa, Dexie (IndexedDB), ts-fsrs, Ha
 
 ## Licenses
 
-HanziLookupJS is GPL-3.0 and the Make Me a Hanzi / hanzi-writer-data stroke data is under the Arphic Public License;
-see `public/vendor/hanzilookup/README.md`. Hanzi Writer and ts-fsrs are MIT, Dexie is Apache-2.0.
+This app is licensed under the GNU GPL v3 (see `LICENSE`), as the handwriting recognizer it includes, HanziLookupJS,
+is GPL-3.0. The Make Me a Hanzi / hanzi-writer-data stroke data is under the Arphic Public License; see
+`public/vendor/hanzilookup/README.md`. Hanzi Writer and ts-fsrs are MIT, Dexie is Apache-2.0.
