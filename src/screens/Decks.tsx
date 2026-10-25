@@ -138,6 +138,14 @@ function ImportPanel({ onDone }: { onDone(): void }) {
         CSV or JSON with columns deck, hanzi, pinyin, english, notes (a header row is optional). Choose a file or paste the
         text.
       </p>
+      <p class="muted small">
+        Have lecture slides or handouts (PDF, Word, PowerPoint)?{' '}
+        <a href={`${import.meta.env.BASE_URL}lecture-to-deck.zip`} download>
+          Download the lecture-to-deck skill
+        </a>{' '}
+        and add it to Claude (Customize → Skills → + → Upload a skill). Then give Claude the files and ask for a deck: it
+        makes a CSV to import here.
+      </p>
       <div class="row">
         <input type="file" accept=".csv,.tsv,.txt,.json,text/csv,application/json,text/plain" onChange={readFile} />
       </div>

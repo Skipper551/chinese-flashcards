@@ -50,6 +50,10 @@ vocabulary list, writes one CSV per lesson to `decks/`, checks it against the im
 character set, and reports anything it skipped or had to fill in. Both folders are git-ignored so course material
 stays out of this public repo.
 
+The site also offers the skill as `lecture-to-deck.zip` (Decks → Import) for uploading to Claude, so anyone using the
+app can make decks this way. The zip is built from that folder by `vite.config.ts`, with the recognizer's character
+list added so the skill's checker works outside this repo.
+
 ## Deploying
 
 `.github/workflows/deploy.yml` builds, tests, and publishes to GitHub Pages on every push to `main` (enable Pages with

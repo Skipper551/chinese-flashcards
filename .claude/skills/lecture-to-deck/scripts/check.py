@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Checks a deck CSV the way the app's importer (src/import.ts) will, plus what the importer can't see: characters
-the handwriting recognizer or the stroke-order data doesn't know, pinyin that doesn't fit the word, and words that are
-already in another deck file. Standard library only.
+the handwriting recognizer doesn't know, pinyin that doesn't fit the word, and words that are already in another deck
+file. Standard library only.
 
-    python3 check.py decks/lesson-3.csv [--against decks/*.csv]
+    python3 check.py lesson-3.csv [--against lesson-1.csv lesson-2.csv ...]
 
 Errors are rows the app would refuse. Warnings are rows it would take but that are probably wrong. Exits 1 on errors.
 """
@@ -16,7 +16,7 @@ import sys
 import unicodedata
 from pathlib import Path
 
-REPO = Path(__file__).resolve().parents[4]
+HERE = Path(__file__).resolve().parent
 FIELDS = ['deck', 'hanzi', 'pinyin', 'english', 'notes']
 # Same aliases as src/import.ts.
 ALIASES = {
@@ -63,12 +63,16 @@ def syllables(pinyin):
 
 
 def known_chars():
-    """Characters the recognizer knows, and those Hanzi Writer has stroke data for (None if not installed)."""
-    mmah = REPO / 'public/vendor/hanzilookup/mmah.json'
-    recognizer = {c[0] for c in json.loads(mmah.read_text())['chars']} if mmah.exists() else None
-    data_dir = REPO / 'node_modules/hanzi-writer-data'
-    strokes = {p.stem for p in data_dir.glob('*.json')} if data_dir.is_dir() else None
-    return recognizer, strokes
+    """Characters the recognizer knows (all of which have stroke-order data too), or None if the list isn't here:
+    known-chars.txt beside this script in the downloadable skill, the recognizer's own data in the repo."""
+    bundled = HERE / 'known-chars.txt'
+    if bundled.exists():
+        return set(bundled.read_text(encoding='utf-8').strip())
+    for folder in HERE.parents:
+        mmah = folder / 'public/vendor/hanzilookup/mmah.json'
+        if mmah.exists():
+            return {c[0] for c in json.loads(mmah.read_text(encoding='utf-8'))['chars']}
+    return None
 
 
 def main():
@@ -78,7 +82,7 @@ def main():
     args = parser.parse_args()
 
     rows = rows_of(args.csv)
-    recognizer, strokes = known_chars()
+    recognizer = known_chars()
     elsewhere = {}
     for other in args.against:
         if other.resolve() != args.csv.resolve():
@@ -107,8 +111,6 @@ def main():
 
         if recognizer is not None and (missing := [c for c in hanzi if c not in recognizer]):
             warnings.append(f'{where}: recognizer doesn\'t know {"".join(missing)}, so it can never be marked right')
-        if strokes is not None and (missing := [c for c in hanzi if c not in strokes]):
-            warnings.append(f'{where}: no stroke-order data for {"".join(missing)}')
         if not pinyin:
             warnings.append(f'{where}: no pinyin')
         else:
@@ -132,8 +134,6 @@ def main():
         print(f'  {deck}: {count} card(s)')
     if recognizer is None:
         print('  (recognizer data not found, character coverage not checked)')
-    if strokes is None:
-        print('  (node_modules/hanzi-writer-data not installed, stroke data not checked; run npm install)')
     for title, items in (('Errors', errors), ('Warnings', warnings)):
         if items:
             print(f'\n{title} ({len(items)}):')
