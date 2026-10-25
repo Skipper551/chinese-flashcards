@@ -42,6 +42,14 @@ Stack: Vite, Preact, TypeScript, vite-plugin-pwa, Dexie (IndexedDB), ts-fsrs, Ha
 - Hanzi Writer's stroke data (`hanzi-writer-data`, ~9,500 files) is served from `hanzi-data/` and cached by the
   service worker as characters are used; the app prefetches a deck's characters when it's imported or studied.
 
+## Decks from lecture files
+
+`.claude/skills/lecture-to-deck/` is a Claude Code skill that turns a lecturer's PDFs, Word documents and PowerPoint
+slides into import CSVs: put the files in `lectures/` and ask Claude Code for a deck from them. It picks out the
+vocabulary list, writes one CSV per lesson to `decks/`, checks it against the importer's rules and the recognizer's
+character set, and reports anything it skipped or had to fill in. Both folders are git-ignored so course material
+stays out of this public repo.
+
 ## Deploying
 
 `.github/workflows/deploy.yml` builds, tests, and publishes to GitHub Pages on every push to `main` (enable Pages with
