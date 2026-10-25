@@ -1,6 +1,6 @@
 # HanziLookupJS (vendored)
 
-Handwriting recognition used to check the characters Sophie writes.
+Handwriting recognition used to check the characters the learner writes.
 
 - Source: https://github.com/gugray/HanziLookupJS, commit `b21124f771ddd91f131e62aa478bc188f6ec78d3` (2019-08-07)
 - `hanzilookup.min.js` and `mmah.json` are copied unmodified from the repository's `dist/` folder.

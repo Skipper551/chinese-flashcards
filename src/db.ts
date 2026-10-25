@@ -46,7 +46,7 @@ export interface ReviewLog {
   rating: number;
   /** Worst recognizer rank across the word's characters on their last try (null if one wasn't recognized). */
   recognizedRank: number | null;
-  /** Whether Sophie changed the automatic grade. */
+  /** Whether the learner changed the automatic grade. */
   overridden: boolean;
   /** The card had never been studied before this review. */
   wasNew: boolean;

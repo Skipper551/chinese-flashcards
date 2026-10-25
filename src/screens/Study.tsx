@@ -29,7 +29,7 @@ type Phase =
   | { kind: 'error'; message: string }
   | { kind: 'empty'; nextDue?: number; newWaiting: number }
   | { kind: 'writing'; attempt: 1 | 2 }
-  /** After Check or "I don't know". `outcome` is what will be recorded unless Sophie overrides it. */
+  /** After Check or "I don't know". `outcome` is what will be recorded unless the learner overrides it. */
   | { kind: 'checked'; attempt: 1 | 2; result: CheckResult | null; outcome: CharOutcome; canRetry: boolean }
   | { kind: 'grading'; suggested: Grade; due: Record<Grade, number> }
   | { kind: 'done'; streak: number };

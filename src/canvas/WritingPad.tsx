@@ -9,7 +9,7 @@ export function toStrokes(ink: InkStroke[]): Stroke[] {
   return ink.map((stroke) => stroke.map(([x, y]): [number, number] => [x * 1000, y * 1000]));
 }
 
-// Once Sophie uses the Pencil, fingers (and the side of her hand) stop drawing for the rest of the visit.
+// Once the learner uses the Pencil, fingers (and the side of their hand) stop drawing for the rest of the visit.
 let penSeen = false;
 
 const INK = '#2b2420';
