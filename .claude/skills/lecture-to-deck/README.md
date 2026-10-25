@@ -8,7 +8,9 @@ fill in. Import the CSV in the app under **Decks → Import**.
 ## Installing
 
 - **Claude (claude.ai or the desktop app)**: Customize → Skills → **+** → Upload a skill, and choose
-  `lecture-to-deck.zip` as it is (don't unzip it). Code execution has to be turned on.
+  `lecture-to-deck.zip` as it is (don't unzip it). Code execution has to be turned on. If Safari unzipped the
+  download into a folder, compress the folder again (right-click → Compress) and upload that zip; uploading SKILL.md
+  on its own leaves out the scripts.
 - **Claude Code**: unzip it into `~/.claude/skills/`, so the file ends up at `~/.claude/skills/lecture-to-deck/SKILL.md`.
 
 Then, for example: attach the Lesson 4 slides and ask "make a flashcard deck from this".

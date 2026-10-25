@@ -18,6 +18,20 @@ Two scripts come with this skill, in the `scripts/` folder next to this file (st
 
 Below, `SKILL_DIR` stands for the folder this file is in; use its real path in commands.
 
+**If `SKILL_DIR/scripts/` doesn't exist**, the skill was installed as SKILL.md alone (often because the browser
+unzipped the download and only this file got uploaded). Tell the user once: the checks are weaker without the
+scripts, and to fix it they should download `lecture-to-deck.zip` again from the app (Decks → Import), re-compress it
+if it arrives as a folder, and upload the zip in place of this skill. Then carry on without the scripts:
+
+- **Reading .docx/.pptx**: they're zip archives. Use a docx/pptx skill if one is available; otherwise unzip and read
+  the XML (`word/document.xml`; `ppt/slides/slideN.xml`, in the order listed in `ppt/presentation.xml`, with notes
+  in `ppt/notesSlides/`). Text is in `<w:t>` / `<a:t>`, table rows in `<w:tr>` / `<a:tr>`, and Word phonetic guides
+  in `<w:ruby>` (`<w:rt>` is the pinyin, `<w:rubyBase>` the characters).
+- **Checking the CSV** (step 4), row by row: `hanzi` is only CJK characters; there's pinyin or English; no word
+  appears twice in a deck or in an earlier deck file; pinyin has one syllable per character (except a final 儿 written
+  as `-r`) and tone marks except on neutral-tone syllables; English is under about 70 characters. The recognizer
+  knows about 9,500 characters, so flag anything rare (outside the ~6,500 most common) for the user to check.
+
 ## Where files go
 
 - **In the Chinese Flashcards repo** (it has `src/import.ts`): lecturer files go in `lectures/`, output in

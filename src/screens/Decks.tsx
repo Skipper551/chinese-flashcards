@@ -144,7 +144,8 @@ function ImportPanel({ onDone }: { onDone(): void }) {
           Download the lecture-to-deck skill
         </a>{' '}
         and add it to Claude (Customize → Skills → + → Upload a skill). Then give Claude the files and ask for a deck: it
-        makes a CSV to import here.
+        makes a CSV to import here. Upload the .zip itself: if Safari unzips it into a folder, compress the folder again
+        (right-click → Compress) and upload that.
       </p>
       <div class="row">
         <input type="file" accept=".csv,.tsv,.txt,.json,text/csv,application/json,text/plain" onChange={readFile} />
